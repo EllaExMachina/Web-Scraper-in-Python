@@ -1,0 +1,11 @@
+import urllib.request
+import re
+page = urllib.request.urlopen('http://wwww.robpercival.co.uk/sampledata.html')
+string = page.read()
+rowList =string.split("<tr>")
+for row in rowList:
+  rowContentList = row.split("\n")
+  for lineOfHTML in rowContentList:
+    if "<td>" in lineOfHTML:
+      s= re.search("<td>(.*)</td>", lineOfHTML)
+      print(s.group(1))
